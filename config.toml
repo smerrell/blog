@@ -6,7 +6,13 @@ theme = "hugo-cactus-theme"
 # Enter your tracking code to enable Google Analytics
 googleAnalytics = ""
 # Disable comments by leaving disqusShortname empty
-disqusShortname = "spf13"
+disqusShortname = ""
+
+pygmentsCodeFences = true
+pygmentsOptions = "linenos=inline"
+
+[permalinks]
+  post = "/:year/:month/:title/"
 
 [params]
 	name = "Sam Merrell"
@@ -33,9 +39,8 @@ disqusShortname = "spf13"
 	readMore = ""
 	copyright = ""
 	# Sharing options and author information in posts
-	# aboutAuthor = "I'm an blogger."
+	aboutAuthor = "I like to make things."
 	tweet = ""
-	share = ""
 	# 404 page
 	title404 = ""
 	subtitle404 = ""
@@ -43,7 +48,7 @@ disqusShortname = "spf13"
 	# Choose a font for the social icons in the footer. Either "mono-social" or "font-awesome"
 	iconFont = "mono-social"
     # The social icons can be styled differently if you use mono as font - circle, rounded, or empty
-    socialIconStyle = "circle"
+    socialIconStyle = "rounded"
 
 # Add additional social link entries underneath
 [social]
