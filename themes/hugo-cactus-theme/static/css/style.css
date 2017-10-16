@@ -81,14 +81,6 @@ h2 {
 	position: relative;
 }
 
-.profile #avatar {
-	display: inline-block;
-	width: 80px;
-	height: 80px;
-	border-radius: 50%;
-	margin-bottom: 20px;
-}
-
 .profile h1 {
 	font-weight: 400;
 	letter-spacing: 0px;
@@ -146,13 +138,6 @@ nav.main-nav a.cta {
 	max-width: 800px;
 	margin: 0 auto;
 	padding: 0px 40px 20px 40px;
-}
-
-.home #avatar {
-	float: right;
-	width: 40px;
-	height: 40px;
-	border-radius: 50%;
 }
 
 /* Typography */
@@ -577,15 +562,6 @@ h2.month {
 	color: #5694f1;
 }
 
-#post-meta img.avatar {
-  height: 36px;
-  width: 36px;
-  float: left;
-  border-radius: 50%;
-  margin-top: 3px;
-  margin-right: 20px;
-  box-shadow: 0 0 0 3px #fff, 0 0 0 4px #eee;
-}
 
 #post-list.archive.readmore h3{
 
@@ -641,6 +617,36 @@ h2.month {
 	.post h2 { font-size:20px; }
 }
 
+/* Avatar */
+.avatar {
+	border-radius: 50%;
+}
+
+.avatar--large {
+	width: 120px;
+	height: 120px;
+}
+
+.avatar--small {
+  height: 36px;
+  width: 36px;
+}
+
+.profile .avatar {
+	display: inline-block;
+	margin-bottom: 20px;
+}
+
+.home .avatar {
+	float: right;
+}
+
+#post-meta .avatar {
+  float: left;
+  margin-top: 3px;
+  margin-right: 20px;
+  box-shadow: 0 0 0 3px #fff, 0 0 0 4px #eee;
+}
 
 /* CUSTOM ADDITIONS */
 
@@ -661,9 +667,9 @@ a.symbol:hover {
     color: #BCD4DA;
 }
 
-code { 
-	font-family:Menlo, Monaco, Courier; 
-	background-color:#EEE; font-size:14px; 
-	padding: 4px; 
+code {
+	font-family:Menlo, Monaco, Courier;
+	background-color:#EEE; font-size:14px;
+	padding: 4px;
 	font-weight: 600;
 }
