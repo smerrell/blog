@@ -282,15 +282,13 @@ hr {
 	background: #eee;
 }
 
-span.code { font-family:Menlo, Monaco, Courier; background-color:#EEE; font-size:14px; }
+/* span.code { font-family:Menlo, Monaco, Courier; background-color:#EEE; font-size:14px; } */
 
-pre	{
+/* pre	{
 	font-family:Menlo, Monaco, Courier;
 	white-space:pre-wrap;
-	/*border: 1px solid #ddd;*/
 	padding:20px;
 	background-color:#fdfdfd;
-	/*font-size:14px;*/
 	overflow:auto;
 	border-radius: 3px;
 	background: #272b2d;
@@ -300,7 +298,7 @@ pre	{
 	  font-weight: 500;
 	color: #d0d4d7;
 
-}
+} */
 
 table {
 	width: 100%;
@@ -667,9 +665,10 @@ a.symbol:hover {
     color: #BCD4DA;
 }
 
+.chroma {
+	overflow: scroll
+}
+
 code {
-	font-family:Menlo, Monaco, Courier;
-	background-color:#EEE; font-size:14px;
-	padding: 4px;
-	font-weight: 600;
+	font-family:Menlo, Monaco, Courier, monospace;
 }

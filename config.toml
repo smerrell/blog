@@ -10,6 +10,7 @@ disqusShortname = ""
 
 pygmentsCodeFences = true
 pygmentsOptions = "linenos=inline"
+pygmentsUseClasses = true
 
 [permalinks]
   post = "/:year/:month/:title/"
