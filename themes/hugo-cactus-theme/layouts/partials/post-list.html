@@ -2,9 +2,11 @@
     {{ range where .Paginator.Pages "Section" "ne" "" }}
         <li>
             <a href='{{ .URL }}'>
-                <span>{{ .LinkTitle }}</span>
+                <h2>
+                    {{ .LinkTitle }}
+                    <p>{{ .Description | markdownify }}</p>
+                </h2>
                 <aside class="dates">{{ .Date.Format "Jan 2 2006" }}</aside>
-                <h2>{{ .Description | markdownify }}</h2>
             </a>
         </li>
     {{ end }}
