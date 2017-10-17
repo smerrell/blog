@@ -1,6 +1,9 @@
 ---
 title: Swift 4 Drawing
 date: 2017-10-14 22:02:39
+description: "Learning the Quartz / Core Graphics API"
+tags: [swift, quartz]
+draft: true
 ---
 
 Learning how to use Swift 4 and Quartz / Core Graphics. Much of the information
