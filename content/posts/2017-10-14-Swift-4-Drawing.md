@@ -2,7 +2,10 @@
 title: Swift 4 Drawing
 date: 2017-10-14 22:02:39
 description: "Learning the Quartz / Core Graphics API"
-tags: [swift, quartz]
+tags: [ "Swift", "Quartz" ]
+categories:
+    - "Development"
+    - "Swift"
 draft: true
 ---
 
