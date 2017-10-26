@@ -18,7 +18,7 @@ pygmentsUseClasses = true
 [params]
 	name = "Sam Merrell"
 	description = "Personal Blog"
-	bio = "I like to make things."
+	bio = "Learning & Dabbling"
 	# Enter optionally your twitter account
 	twitter = "smerrell"
 	enableRSS = true
@@ -40,7 +40,7 @@ pygmentsUseClasses = true
 	readMore = ""
 	copyright = ""
 	# Sharing options and author information in posts
-	aboutAuthor = "I like to make things."
+	aboutAuthor = "I like to learn new things."
 	tweet = ""
 	# 404 page
 	title404 = ""
