@@ -4,7 +4,7 @@ languageCode = "en-us"
 title = "Sam Merrell"
 theme = "hugo-cactus-theme"
 # Enter your tracking code to enable Google Analytics
-googleAnalytics = ""
+googleAnalytics = "UA-35739428-1"
 # Disable comments by leaving disqusShortname empty
 disqusShortname = ""
 

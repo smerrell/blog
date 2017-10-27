@@ -4,5 +4,3 @@
 {{ range .Site.Params.customJS }}
 <script async src="{{ . | absURL }}"></script>
 {{ end }}
-
-{{ template "_internal/google_analytics.html" . }}
