@@ -38,25 +38,64 @@ class CircleView: NSView {
 
 ## Questions
 
-1. How does the Graphics context play in this?
-    * Is this the right way now?
-        ```swift
-        let context = NSGraphicsContext.current?.cgContext
-        ```
-    * Maybe?
+### How does the Graphics context play in this?
+
+#### The right way now
+
+```swift
+let context = NSGraphicsContext.current?.cgContext
+```
+
+#### The old way looks like this:
+
+```swift
+let context = NSGraphicsContext.current?.graphicsPort
+```
+
+That method is deprecated.
+
+### Filling `CGRect`s
+
+There look to be two ways to fill a `CGRect`. Either you can call `.fill()` on
+an instance of a `CGRect` or you can call the `.fill(rect: CGRect)` or
+`.fill(rects: [CGRect])`. Is one preferred over the other? I could see how the
+fill multiple rects would be useful but how does the single fill compare to the
+one on the `CGRect` itself?
 
 ## Notes
 
-* `NSRectFill` -> `NSRect.fill()`
-    * The global of `NSRectFill` is replaced by instance functions, so you can
-      call fill on `rect` instances it looks like. Most examples use the globals
-      though.
-    * https://twitter.com/jnadeau/status/873015119113969664?lang=en
-        * NSRectFill → rect.fill(), NSRectClip → rect.clip(), NSBeep →
-          NSSound.beep()
-* Order matters. think of it like a painting as you add layers on, that is what
-  gets rendered and you eventually see on the screen
+### `NSRect` vs `CGRect`
 
+They look like they are the same thing. I'm assuming you should use `CGRect`
+instead of the `NSRect` since I think `CGRect` is also used on iOS.
+
+### `NSRectFill` -> `NSRect.fill()`
+
+The global of `NSRectFill` is replaced by instance functions, so you can call
+fill on `rect` instances it looks like. Most examples use the globals though.
+
+* https://twitter.com/jnadeau/status/873015119113969664?lang=en
+    * NSRectFill → rect.fill(), NSRectClip → rect.clip(), NSBeep →
+        NSSound.beep()
+
+### Order matters.
+
+think of it like a painting as you add layers on, that is what gets rendered and
+you eventually see on the screen
+
+### Creating `CGRect`s
+
+Most examples use this:
+
+```swift
+let cgrect = CGRectMake(0, 0, 200, 100)
+```
+
+But the swift way is to use an initializer on CGRect now:
+
+```swift
+let gcrect = CGRect(x: 0.0, y: 0.0, width: 100.0, height: 200.0)
+```
 
 ### Resources
 

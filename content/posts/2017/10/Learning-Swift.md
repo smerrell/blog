@@ -24,7 +24,9 @@ from what I've been doing.
 ## Notes
 
 ### Interface Builder
-Looks to be pretty cool though I try to use the keyboard and that goes out the window with Interface Builder. Oh well.
+
+Looks to be pretty cool though I try to use the keyboard and that goes out the
+window with Interface Builder. Oh well.
 
 ### Handling View Controllers
 
@@ -34,7 +36,9 @@ controllers. The tiny bit of WPF experience with using MVVM hasn't translated
 very well for me since I didn't really do it enough to get a good feel for
 native UI work. I've mostly lived on the backend so this is different.
 
-A lot of what I've seen uses Protocols to define a delegate and then you have your view controller implement that delegate. Then you can set your view controller as a delegate of a different class that does most of your logic.
+A lot of what I've seen uses Protocols to define a delegate and then you have
+your view controller implement that delegate. Then you can set your view
+controller as a delegate of a different class that does most of your logic.
 
 Other approaches seem to try to avoid the View Controller as much as possible,
 but feels like it takes a lot of glue to make that happen. Apple's description
@@ -79,7 +83,9 @@ func applicationDidEnterBackground(_ application: UIApplication) {
 }
 ```
 
-Called after `applicationWillResignActive`, like that function use it to save state. If the func was called because of a user quitting the app, you have about 5 seconds to finish up before the app is completely shut down.
+Called after `applicationWillResignActive`, like that function use it to save
+state. If the func was called because of a user quitting the app, you have about
+5 seconds to finish up before the app is completely shut down.
 
 ```swift
 func applicationWillEnterForeground(_ application: UIApplication) {
@@ -193,7 +199,8 @@ https://developer.apple.com/library/content/documentation/WindowsViews/Conceptua
 1. position and size of scroll view (`frame` property)
 1. size of the content being displayed (`contentSize` property)
 
-troubles with autolayout of the scroll view. A stack view makes sense but it doesn't want to let me constrain it to the edges of the scroll view?
+troubles with autolayout of the scroll view. A stack view makes sense but it
+doesn't want to let me constrain it to the edges of the scroll view?
 
 Looks like there is a little more to auto layout when nesting a stack view
 inside a scroll view. The stack view needs to be constrained to the scroll view
@@ -206,7 +213,9 @@ both horizontally and vertically but you already have the image size.
 
 ### The Keyboard
 
-By default, if the keyboard shows it just covers your view. To handle that, you need to register when the keyboard is shown/hidden. You then adjust the padding of your view to push everything up above the keyboard.
+By default, if the keyboard shows it just covers your view. To handle that, you
+need to register when the keyboard is shown/hidden. You then adjust the padding
+of your view to push everything up above the keyboard.
 
 This must also be how other apps have added toolbars just above the keyboard.
 
@@ -242,7 +251,9 @@ This must also be how other apps have added toolbars just above the keyboard.
 
 ## Scroll View with an Image
 
-Pretty simple, but you need to use `UIScrollViewDelegate` on the view controller. Then you return the view you want to zoom using the `viewForZooming` function.
+Pretty simple, but you need to use `UIScrollViewDelegate` on the view
+controller. Then you return the view you want to zoom using the `viewForZooming`
+function.
 
 ```swift
 func viewForZooming(in scrollView: UIScrollView) -> UIView? {
@@ -341,3 +352,11 @@ Most implementations of this protocol will look something like this:
 1. Configure the cell's properties with the model object properties. i.e. set
    views (labels, image views, etc.) based on model object
 1. Return the fully configured cell
+
+**20172-7**
+- - -
+
+## Static Table Views
+
+Useful when you know you want the layout regardless of the content inside the
+view.
