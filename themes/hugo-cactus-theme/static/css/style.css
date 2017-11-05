@@ -218,9 +218,9 @@ em, i { font-style: italic; }
 }
 
 .post h2 {
-	margin-bottom: 40px;
-	  font: 300 24px/1.5 "Helvetica Neue",Helvetica,Arial,sans-serif;
-	  color: #111;
+	margin-bottom: 20px;
+	font: 400 24px/1.5 "Helvetica Neue",Helvetica,Arial,sans-serif;
+	color: #111;
 }
 
 .post h2.subtitle {
@@ -241,7 +241,7 @@ em, i { font-style: italic; }
 }
 
 h3, h4, h5 { color:#333; }
-h3 { font-size:20px; font-weight: 400; }
+h3 { font-size:24px; font-weight: 300; }
 h4 { font-size:16px; font-weight: bold; }
 h5 { font-size:15px; font-weight: bold; }
 h6 {
@@ -600,6 +600,11 @@ h2.month {
 	.post h2.headline { font-size: 13px; }
 	.post h1 { font-size:24px; }
 	.post h2 { font-size:20px; }
+	.figure--right {
+		float: none;
+		margin: 0 auto;
+		text-align: center;
+	}
 }
 
 @media screen and (max-width: 360px) {
