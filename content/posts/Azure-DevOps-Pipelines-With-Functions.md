@@ -1,12 +1,16 @@
 ---
 title: "Azure DevOps Exploration"
-date: 2018-09-29T11:29:53-06:00
-draft: true
+description: "Deploy an Azure Function using Azure Pipelines"
+date: 2018-11-10T16:13:53-07:00
+tags: ["Azure Functions", "DevOps"]
+categories:
+  - DevOps
+  - Software
 ---
 
-Building software has always been a hassle. Over the years, the effort it takes to create a reliable build system has decreased drastically. Tools like [Travis CI](https://travis-ci.org) dramatically cut down the time and effort it takes to go from no build to a functioning continuous integration pipeline. I've tried a few CI applications from Travis, AppVeyor, and TeamCity. One CI application I had not tried, though, was Visual Studio Team Services  — better known as VSTS. Microsoft rebranded VSTS to Azure DevOps in September, so what better time to give Azure DevOps a try?
+Building software has always been a hassle. Over the years, the effort it takes to create a reliable build system has decreased drastically. Tools like [Travis CI](https://travis-ci.org) dramatically reduce the time and effort it takes to go from nothing to a functioning continuous integration pipeline. I've tried a few CI tools like Travis, AppVeyor, and TeamCity. One CI application I had not tried, was Visual Studio Team Services  — better known as VSTS. Microsoft rebranded VSTS to Azure DevOps in September, so what better time to give Azure DevOps a try?
 
-In order to test out Azure DevOps, I need a project. Luckily, I had one in mind — a Pomodoro application I have been writing for my Mac. Right now, the app tracks how many pomodoros I've completed in memory. Instead of trying to store the completed pomodoros locally, why not push those events into an Azure Function? The function would then save that information into Azure Table Storage. With a project in mind, I got started.
+In order to test out Azure DevOps, I needed a project. Luckily, I had one — a Pomodoro application I have been writing for my Mac. Right now, the app tracks how many pomodoros I've completed in memory. Instead of trying to store the completed pomodoros locally, why not push those events into an Azure Function where it could save that information into Azure Table Storage? With a project in mind, I got started.
 
 ## What is Azure DevOps?
 
@@ -14,27 +18,27 @@ Azure DevOps started its life as VSTS which bundled several tools into one appli
 
 ## Creating an Organization
 
-To get started with Azure DevOps, I needed to create an organization. Going through the setup process was simple, I gave my organization a unique name and a region I wanted to host my projects in. After that, my organization was created. That was quick and easy, but I would love to be able to script the creation of an organization. From what research I did, that does not seem like it is possible yet. That isn't a huge issue, but I very much prefer to have all my infrastructure setup and configuration done through automation and not by clicking through a portal.
+To get started with Azure DevOps, I needed to create an organization. Going through the setup process was simple, I gave my organization a unique name and a region I wanted to host my projects in. After that, my organization was created. That was quick and easy, but I would love to be able to script the creation of an organization. From what research I did, that does not seem like it is possible yet. That isn't a huge issue, but I very much prefer to have all my infrastructure setup and configuration done through automation and not by clicking through the portal.
 
-![](../../../../../static/images/posts/create-devops-organization.png)
+![Azure DevOps screen to create a project](/images/posts/create-devops-project.png)
 
 ## My First Project
 
 With my organization created, I was able to get started on my project.
 
-![create-devops-project](../../../../../static/images/posts/create-devops-project.png)
+![Azure DevOps UI to create a new Project](/images/posts/create-devops-project.png)
 
-Creating a project was as simple as picking a name and hitting create. From there the project was created and all the services enabled. I went into the settings and decided I only wanted to use pipelines, each service is a checkbox. Easy.
+Creating a project was as simple as picking a name and hitting create. From there, the project was created and all the services enabled. Since I only planned on using Pipelines, I went into the settings and unchecked the services I did not need. Easy.
 
 ## The Build Pipeline
 
-Next step, I created my first build pipeline. After clicking on Pipelines and then the New pipeline button I'm faced with a problem.
+Next step, I created my first build pipeline. After clicking on Pipelines and then the New pipeline button I was faced with a problem.
 
-![](../../../../../static/images/posts/devops-build-pipeline.png)
+![Azure DevOps screen to create a build pipeline](/images/posts/devops-build-pipeline.png)
 
-I was planning on hosting the function code in GitLab since that is where I host the code to the Pomodoro app. I want to keep that code private for now and I didn't want to spend time making GitLab work, I gave Azure Repos a try. Now, I realize I could have hooked up the pipeline to GitLab, but Azure Repos is working well for me. Enough so, that I might consider moving my Pomodoro app repo over as well.
+I was planning on hosting the function code in GitLab since that is where I host the code to the Pomodoro app. I want to keep that code private for now and I didn't want to spend time making GitLab work, I gave Azure Repos a try. Now, I realize I could have hooked up the pipeline to GitLab, but Azure Repos is working well for me. Enough so, that I plan on keeping the source code there and I might also move the repository for my Mac application as well.
 
-I selected the newly created repository and then I was presented with a list of templates to start my build pipeline. Scrolling through the templates I noticed Microsoft has built steps for many common types of applications. From .NET, .NET Core, C++, Python, Ruby, Node, Docker to Xamarin or Xcode projects. It is clear that Azure DevOps will work with any project.
+I selected the newly created repository and then I was presented with a list of templates to start my build pipeline. Scrolling through the templates I noticed Microsoft has built steps for many common types of applications. From .NET, .NET Core, C++, Python, Ruby, Node, Docker to Xamarin or Xcode projects. It is clear that Azure DevOps will work with any project and that Microsoft wants you to know that.
 
 ### Defining the Build
 
@@ -71,33 +75,32 @@ While working out how to build my Function App, I ran into trouble with the docu
 
 ## On to the Release Pipeline
 
-The Release Pipeline doesn't seem to be versioned the same way as the build pipeline. That is somewhat understandable, but also felt strange when I realized that.
+The Release Pipeline doesn't seem to be versioned the same way as the build pipeline. That is somewhat understandable, but also felt strange when I realized that. Since I couldn't version the pipeline, I went through the site to create my release pipeline. You get a nice prompt suggesting starter release pipelines for many different types of application as you can see below:
 
-How do I get my build application into the release pipeline?
+![Azure DevOps release pipeline template selection](/images/posts/azure-devops-release-pipeline.png)
+
+Since I was deploying a Function App, I searched for "function" and found a template available and selected it.
 
 ## Deploying my Function App
 
-Turns out, you need to Zip the application up.
+Once I selected the template I was shown the UI for managing the release pipeline. The Azure Function template is very simple, which was a great place to start.
+
+![The default Azure Function release pipeline](/images/posts/azure-devops-release-template-for-function.png)
+
+After looking at the overview of the function, I realized I needed to click on the `1 job, 1 task` section. From there, all I had to do was fill out the required information for my Function App. This consisted of the Azure Subscription I wanted to use and then the App Service for the Function App I was deploying. Pretty easy.
+
+So now that I had that configured, the next step was to get the artifacts from my build pipeline into my release pipeline. I clicked on the "Add an artifact" option under the Artifacts section of the Release pipeline and I picked my source pipeline as well as selected using the Latest build. There are several options under what build version the pipeline can use but Latest fit what I was trying to do.
+
+Now that my pipeline was ready, I created a release and went to get to deploy my code. But I couldn't, the release couldn't find any artifacts for me to find. With that, I went back to the build pipeline to try and figure out how I get artifacts published so that the Release pipeline could use them.
+
+This took several attempts to figure out what I needed to do to promote my artifacts. At first, I thought that I needed to call `dotnet publish` and push the output into Azure DevOps `Build.ArtifactStagingDirectory`. At the time, I was trying to understand if Azure DevOps then picked up the staged artifacts and published them after the build passed. This was not correct and my attempted deployment failed because there were no artifacts to deploy.
+
+My second attempt was to then publish the app and then zip the contents into the Staging Directory. Still no luck, but it felt like I was on the right track, I was just missing something. And indeed I was missing something, I then found the `PublishArtifacts` task. I updated my build process to publish the zip file that I had placed in the staging directory and then my release pipeline worked! I now had a working Azure Function and a simple build and release pipeline. All within the course of an evening. Not bad.
 
 ## Impressions of Azure DevOps
 
 I am quite pleased by what I've used in Azure DevOps. Rebranding VSTS to Azure DevOps was a smart move, VSTS had baggage that it was only for Microsoft applications. With the new name, I was interested enough to give it a try. The pipeline YAML file is a great way to manage the build process. I'm glad to see that Microsoft recognized what Travis CI, Appveyor and others have been doing and followed that process. Defining my release process was extremely easy, and from what I can tell, extremely powerful. I do find it strange my release process isn't versioned the same way as the build process though. I would be curious to see what that file would look like.
 
-This was a great experience and I plan on still using Azure DevOps. I also plan on bringing this to my coworkers and investigating if it makes sense for us to start trying out Azure DevOps at work as well.
+I did have some hurdles finding documentation that was clear on how to hook up the build and release pipeline as well as describing where tasks were. These were annoying, but I did manage to figure out everything in a relatively short amount of time. The documentation was helpful, but like most documentation, always can use some more work and clarity. I'm confident Microsoft will keep improving this area of Azure DevOps.
 
-
-## Notes
-
-Tasks around "web" .net core projects don't work with Azure functions even though you do end up doing a `dotnet publish` on the Function App.
-
-The Azure function deployment step seems to default to a zip file deployment.
-
-## Questions
-
-- [ ] Are there ways to automate creating a DevOps Pipeline?
-  - Not 100% sure you can create the projects and pipelines but there is the
-    [VSTS Command Line
-    Tool](https://docs.microsoft.com/en-us/cli/vsts/install?view=vsts-cli-latest)
-- [x] How much does Azure DevOps cost?
-- [x] what exactly are tasks and where can I see a list of preexisting tasks
-  - [Docs](https://docs.microsoft.com/en-us/azure/devops/pipelines/tasks/?view=vsts)
+Overall it was a great experience and I plan on still using Azure DevOps. I also plan on bringing this to my coworkers and investigating if it makes sense for us to start trying out Azure DevOps at work as well.

@@ -1,6 +1,10 @@
 ---
 title: "Azure Web App for Containers Using Terraform"
 date: 2018-09-28T16:17:32-06:00
+tags: ["Azure", "Terraform", "DevOps"]
+categories:
+  - DevOps
+  - Software
 ---
 
 Recently at work I have been tasked with helping our organization transition
